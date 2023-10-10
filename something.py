@@ -1,20 +1,33 @@
-import pygame
-pygame.init() #makes instance of pygame
-black = (0,0,0) #set color
-size = (800, 600)
-screen = pygame.display.set_mode(size)
-pygame.display.set_caption("My Game")
+import pygame, sys
+
+class Person(pygame.sprite.Sprite):
+    def __init__(self, width, height, pos_x, pos_y, color):
+        super().__init__()
+        self.image = pygame.Surface([width, height])
+        self.image.fill(color)
+        self.rect = self.image.get_rect()
+        self.rect.center = [pos_x, pos_y]
+
+# General Setup
+pygame.init()
 clock = pygame.time.Clock()
 
-done = False
+# Game Screen
+screen_width = 800
+screen_height = 600
+screen = pygame.display.set_mode((screen_width, screen_height))
 
-while done == False: 
+person = Person(50, 50, 100, 100, (255, 255, 255))
+
+person_group = pygame.sprite.Group()
+person_group.add(person)
+
+while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            done = True
-
-    screen.fill(black)
+            pygame.quit()
+            sys.exit()
 
     pygame.display.flip()
-    clock.tick(60)
-pygame.quit()
+    person_group.draw(screen)
+    clock.tick(165)
