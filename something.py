@@ -17,10 +17,12 @@ screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 
-person = Person(50, 50, 100, 100, (255, 255, 255))
+person = Person(50, 100, 200, 100, (255, 255, 255))
+person1 = Person(50, 100, 400, 100, (130, 255, 0))
 
 person_group = pygame.sprite.Group()
 person_group.add(person)
+person_group.add(person1)
 
 while True:
     for event in pygame.event.get():
